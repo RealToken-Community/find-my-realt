@@ -335,7 +335,7 @@ export default function Main({ datas }: {
                         dataSource={filteredDatas}
                         scroll={{
                             x: 'max-content',
-                            y: 600
+                            y: 'calc(100vh - 150px)'
                         }}
                         pagination={{
                             defaultPageSize: 50,

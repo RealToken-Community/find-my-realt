@@ -5,6 +5,7 @@ import { Layout } from 'antd';
 
 import "./globals.css";
 import ConfigProvider from '@/app/components/configProvider';
+import { Suspense } from "react";
 
 const work_sans = Work_Sans({ weight: ['300', '400', '600', '800'], subsets: ['latin'] });
 
@@ -21,13 +22,15 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${work_sans.className} text-[1.3rem] max-w-full`}>
-                <AntdRegistry>
-                    <ConfigProvider>
-                        <Layout className="h-screen max-h-screen overflow-y-hidden">
-                            {children}
-                        </Layout>
-                    </ConfigProvider>
-                </AntdRegistry>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <AntdRegistry>
+                        <ConfigProvider>
+                            <Layout className="h-screen max-h-screen overflow-y-hidden">
+                                {children}
+                            </Layout>
+                        </ConfigProvider>
+                    </AntdRegistry>
+                </Suspense>
             </body>
         </html>
     );
